@@ -1,0 +1,55 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Wed Mar 22 16:34:03 2017
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                 RES_VECT       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000002    program   0x000002
+                   .org_0       code   0x000008    program   0x000008
+                   .org_1       code   0x000018    program   0x00001a
+                    dbgP0       code   0x007dc0    program   0x000240
+.config_300001_BUILD/DEFAULT/DEBUG/MAIN.O    romdata   0x300001    program   0x000001
+.config_300002_BUILD/DEFAULT/DEBUG/MAIN.O    romdata   0x300002    program   0x000001
+.config_300003_BUILD/DEFAULT/DEBUG/MAIN.O    romdata   0x300003    program   0x000001
+.config_300005_BUILD/DEFAULT/DEBUG/MAIN.O    romdata   0x300005    program   0x000001
+.config_300006_BUILD/DEFAULT/DEBUG/MAIN.O    romdata   0x300006    program   0x000001
+.config_300008_BUILD/DEFAULT/DEBUG/MAIN.O    romdata   0x300008    program   0x000001
+.config_300009_BUILD/DEFAULT/DEBUG/MAIN.O    romdata   0x300009    program   0x000001
+.config_30000A_BUILD/DEFAULT/DEBUG/MAIN.O    romdata   0x30000a    program   0x000001
+.config_30000B_BUILD/DEFAULT/DEBUG/MAIN.O    romdata   0x30000b    program   0x000001
+.config_30000C_BUILD/DEFAULT/DEBUG/MAIN.O    romdata   0x30000c    program   0x000001
+.config_30000D_BUILD/DEFAULT/DEBUG/MAIN.O    romdata   0x30000d    program   0x000001
+                    dbgD0      udata   0x0005f4       data   0x00000c
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000003      
+                            0x000008    0x00000f      
+                            0x000018    0x000031      
+                            0x007dc0    0x007fff      
+                            0x300001    0x300003      
+                            0x300005    0x300006      
+                            0x300008    0x30000d      
+            625 out of 33048 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   INICIO   0x00002e    program     static C:\Users\DOCENTE 02\MPLABXProjects\ASM.X\main.asm
+             _.org_1_002E   0x00002e    program     static C:\Users\DOCENTE 02\MPLABXProjects\ASM.X\main.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   INICIO   0x00002e    program     static C:\Users\DOCENTE 02\MPLABXProjects\ASM.X\main.asm
+             _.org_1_002E   0x00002e    program     static C:\Users\DOCENTE 02\MPLABXProjects\ASM.X\main.asm
+
+
