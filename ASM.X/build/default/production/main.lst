@@ -1,4 +1,4 @@
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE  1
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -9,7 +9,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00003 
                       00004 ; Assembly source line config statements
                       00005 
-                      00006 #include "p18f45k20.inc"
+                      00006 
+                      00007 
+                      00008 #include "config.h"
+                      00001 
+                      00002 #include "p18f45k20.inc"
                       00001         LIST
                       00002 
                       00003 ;==========================================================================
@@ -20,128 +24,127 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00008 ;==========================================================================
                       00009 
                       01569         LIST
-                      00007 
-                      00008 ; CONFIG1H
-                      00009   CONFIG  FOSC = INTIO67        ; Oscillator Selection bits (Internal oscillator block, port function on
+                      00003 
+                      00004 ; CONFIG1H
+                      00005   CONFIG  FOSC = INTIO67        ; Oscillator Selection bits (Internal oscillator block, port function on
                              RA6 and RA7)
-                      00010   CONFIG  FCMEN = OFF           ; Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
-                      00011   CONFIG  IESO = OFF            ; Internal/External Oscillator Switchover bit (Oscillator Switchover mod
+                      00006   CONFIG  FCMEN = OFF           ; Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
+                      00007   CONFIG  IESO = OFF            ; Internal/External Oscillator Switchover bit (Oscillator Switchover mod
                             e disabled)
-                      00012 
-                      00013 ; CONFIG2L
-                      00014   CONFIG  PWRT = OFF            ; Power-up Timer Enable bit (PWRT disabled)
-                      00015   CONFIG  BOREN = SBORDIS       ; Brown-out Reset Enable bits (Brown-out Reset enabled in hardware only 
+                      00008 
+                      00009 ; CONFIG2L
+                      00010   CONFIG  PWRT = OFF            ; Power-up Timer Enable bit (PWRT disabled)
+                      00011   CONFIG  BOREN = SBORDIS       ; Brown-out Reset Enable bits (Brown-out Reset enabled in hardware only 
                             (SBOREN is disabled))
-                      00016   CONFIG  BORV = 18             ; Brown Out Reset Voltage bits (VBOR set to 1.8 V nominal)
-                      00017 
-                      00018 ; CONFIG2H
-                      00019   CONFIG  WDTEN = ON            ; Watchdog Timer Enable bit (WDT is always enabled. SWDTEN bit has no ef
+                      00012   CONFIG  BORV = 18             ; Brown Out Reset Voltage bits (VBOR set to 1.8 V nominal)
+                      00013 
+                      00014 ; CONFIG2H
+                      00015   CONFIG  WDTEN = ON            ; Watchdog Timer Enable bit (WDT is always enabled. SWDTEN bit has no ef
                             fect)
-                      00020   CONFIG  WDTPS = 32768         ; Watchdog Timer Postscale Select bits (1:32768)
-                      00021 
-                      00022 ; CONFIG3H
-                      00023   CONFIG  CCP2MX = PORTC        ; CCP2 MUX bit (CCP2 input/output is multiplexed with RC1)
-                      00024   CONFIG  PBADEN = ON           ; PORTB A/D Enable bit (PORTB<4:0> pins are configured as analog input c
+                      00016   CONFIG  WDTPS = 32768         ; Watchdog Timer Postscale Select bits (1:32768)
+                      00017 
+                      00018 ; CONFIG3H
+                      00019   CONFIG  CCP2MX = PORTC        ; CCP2 MUX bit (CCP2 input/output is multiplexed with RC1)
+                      00020   CONFIG  PBADEN = ON           ; PORTB A/D Enable bit (PORTB<4:0> pins are configured as analog input c
                             hannels on Reset)
-                      00025   CONFIG  LPT1OSC = OFF         ; Low-Power Timer1 Oscillator Enable bit (Timer1 configured for higher p
+                      00021   CONFIG  LPT1OSC = OFF         ; Low-Power Timer1 Oscillator Enable bit (Timer1 configured for higher p
                             ower operation)
-                      00026   CONFIG  HFOFST = ON           ; HFINTOSC Fast Start-up (HFINTOSC starts clocking the CPU without waiti
+                      00022   CONFIG  HFOFST = ON           ; HFINTOSC Fast Start-up (HFINTOSC starts clocking the CPU without waiti
                             ng for the oscillator to stablize.)
-                      00027   CONFIG  MCLRE = ON            ; MCLR Pin Enable bit (MCLR pin enabled; RE3 input pin disabled)
-                      00028 
-                      00029 ; CONFIG4L
-                      00030   CONFIG  STVREN = ON           ; Stack Full/Underflow Reset Enable bit (Stack full/underflow will cause
+                      00023   CONFIG  MCLRE = ON            ; MCLR Pin Enable bit (MCLR pin enabled; RE3 input pin disabled)
+                      00024 
+                      00025 ; CONFIG4L
+                      00026   CONFIG  STVREN = ON           ; Stack Full/Underflow Reset Enable bit (Stack full/underflow will cause
                              Reset)
-                      00031   CONFIG  LVP = ON              ; Single-Supply ICSP Enable bit (Single-Supply ICSP enabled)
-                      00032   CONFIG  XINST = OFF           ; Extended Instruction Set Enable bit (Instruction set extension and Ind
+                      00027   CONFIG  LVP = ON              ; Single-Supply ICSP Enable bit (Single-Supply ICSP enabled)
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00028   CONFIG  XINST = OFF           ; Extended Instruction Set Enable bit (Instruction set extension and Ind
                             exed Addressing mode disabled (Legacy mode))
-                      00033 
-                      00034 ; CONFIG5L
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE  2
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-                      00035   CONFIG  CP0 = OFF             ; Code Protection Block 0 (Block 0 (000800-001FFFh) not code-protected)
-                      00036   CONFIG  CP1 = OFF             ; Code Protection Block 1 (Block 1 (002000-003FFFh) not code-protected)
-                      00037   CONFIG  CP2 = OFF             ; Code Protection Block 2 (Block 2 (004000-005FFFh) not code-protected)
-                      00038   CONFIG  CP3 = OFF             ; Code Protection Block 3 (Block 3 (006000-007FFFh) not code-protected)
-                      00039 
-                      00040 ; CONFIG5H
-                      00041   CONFIG  CPB = OFF             ; Boot Block Code Protection bit (Boot block (000000-0007FFh) not code-p
+                      00029 
+                      00030 ; CONFIG5L
+                      00031   CONFIG  CP0 = OFF             ; Code Protection Block 0 (Block 0 (000800-001FFFh) not code-protected)
+                      00032   CONFIG  CP1 = OFF             ; Code Protection Block 1 (Block 1 (002000-003FFFh) not code-protected)
+                      00033   CONFIG  CP2 = OFF             ; Code Protection Block 2 (Block 2 (004000-005FFFh) not code-protected)
+                      00034   CONFIG  CP3 = OFF             ; Code Protection Block 3 (Block 3 (006000-007FFFh) not code-protected)
+                      00035 
+                      00036 ; CONFIG5H
+                      00037   CONFIG  CPB = OFF             ; Boot Block Code Protection bit (Boot block (000000-0007FFh) not code-p
                             rotected)
-                      00042   CONFIG  CPD = OFF             ; Data EEPROM Code Protection bit (Data EEPROM not code-protected)
-                      00043 
-                      00044 ; CONFIG6L
-                      00045   CONFIG  WRT0 = OFF            ; Write Protection Block 0 (Block 0 (000800-001FFFh) not write-protected
+                      00038   CONFIG  CPD = OFF             ; Data EEPROM Code Protection bit (Data EEPROM not code-protected)
+                      00039 
+                      00040 ; CONFIG6L
+                      00041   CONFIG  WRT0 = OFF            ; Write Protection Block 0 (Block 0 (000800-001FFFh) not write-protected
                             )
-                      00046   CONFIG  WRT1 = OFF            ; Write Protection Block 1 (Block 1 (002000-003FFFh) not write-protected
+                      00042   CONFIG  WRT1 = OFF            ; Write Protection Block 1 (Block 1 (002000-003FFFh) not write-protected
                             )
-                      00047   CONFIG  WRT2 = OFF            ; Write Protection Block 2 (Block 2 (004000-005FFFh) not write-protected
+                      00043   CONFIG  WRT2 = OFF            ; Write Protection Block 2 (Block 2 (004000-005FFFh) not write-protected
                             )
-                      00048   CONFIG  WRT3 = OFF            ; Write Protection Block 3 (Block 3 (006000-007FFFh) not write-protected
+                      00044   CONFIG  WRT3 = OFF            ; Write Protection Block 3 (Block 3 (006000-007FFFh) not write-protected
                             )
-                      00049 
-                      00050 ; CONFIG6H
-                      00051   CONFIG  WRTC = OFF            ; Configuration Register Write Protection bit (Configuration registers (
+                      00045 
+                      00046 ; CONFIG6H
+                      00047   CONFIG  WRTC = OFF            ; Configuration Register Write Protection bit (Configuration registers (
                             300000-3000FFh) not write-protected)
-                      00052   CONFIG  WRTB = OFF            ; Boot Block Write Protection bit (Boot Block (000000-0007FFh) not write
+                      00048   CONFIG  WRTB = OFF            ; Boot Block Write Protection bit (Boot Block (000000-0007FFh) not write
                             -protected)
-                      00053   CONFIG  WRTD = OFF            ; Data EEPROM Write Protection bit (Data EEPROM not write-protected)
-                      00054 
-                      00055 ; CONFIG7L
-                      00056   CONFIG  EBTR0 = OFF           ; Table Read Protection Block 0 (Block 0 (000800-001FFFh) not protected 
+                      00049   CONFIG  WRTD = OFF            ; Data EEPROM Write Protection bit (Data EEPROM not write-protected)
+                      00050 
+                      00051 ; CONFIG7L
+                      00052   CONFIG  EBTR0 = OFF           ; Table Read Protection Block 0 (Block 0 (000800-001FFFh) not protected 
                             from table reads executed in other blocks)
-                      00057   CONFIG  EBTR1 = OFF           ; Table Read Protection Block 1 (Block 1 (002000-003FFFh) not protected 
+                      00053   CONFIG  EBTR1 = OFF           ; Table Read Protection Block 1 (Block 1 (002000-003FFFh) not protected 
                             from table reads executed in other blocks)
-                      00058   CONFIG  EBTR2 = OFF           ; Table Read Protection Block 2 (Block 2 (004000-005FFFh) not protected 
+                      00054   CONFIG  EBTR2 = OFF           ; Table Read Protection Block 2 (Block 2 (004000-005FFFh) not protected 
                             from table reads executed in other blocks)
-                      00059   CONFIG  EBTR3 = OFF           ; Table Read Protection Block 3 (Block 3 (006000-007FFFh) not protected 
+                      00055   CONFIG  EBTR3 = OFF           ; Table Read Protection Block 3 (Block 3 (006000-007FFFh) not protected 
                             from table reads executed in other blocks)
-                      00060 
-                      00061 ; CONFIG7H
-                      00062   CONFIG  EBTRB = OFF           ; Boot Block Table Read Protection bit (Boot Block (000000-0007FFh) not 
+                      00056 
+                      00057 ; CONFIG7H
+                      00058   CONFIG  EBTRB = OFF           ; Boot Block Table Read Protection bit (Boot Block (000000-0007FFh) not 
                             protected from table reads executed in other blocks)
-                      00063 
-                      00064 
-                      00065     
-                      00066 RES_VECT  CODE    0x0000            ; processor reset vector
-000000 D00B           00067     bra    0x0018                   ; go to beginning of program
-                      00068     ORG 0x0008
-000008 2B60           00069     incf        0x060
-00000A C060 FF83      00070     movff       0x060,PORTD
-00000E 94F2           00071     BCF         INTCON,2
-000010 0E00           00072     MOVLW       0X00
-000012 6ED6           00073     MOVWF       TMR0L
-000014 0011           00074     RETFIE      1
-                      00075 ; TODO ADD INTERRUPTS HERE IF USED
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE  3
+                      00009 
+                      00010     
+                      00011 RES_VECT  CODE    0x0000            ; processor reset vector
+000000 D00B           00012     bra    0x0018                   ; go to beginning of program
+                      00013     ORG 0x0008
+000008 2B60           00014     incf        0x060
+00000A C060 FF83      00015     movff       0x060,PORTD
+00000E 94F2           00016     BCF         INTCON,2
+000010 0E00           00017     MOVLW       0X00
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00076 
-                      00077 MAIN_PROG CODE    ; let linker place main program
-                      00078     ORG 0X0018
-000018 0E00           00079         MOVLW   00h                      ; load constant trisD
-00001A 6E95           00080         MOVWF   TRISD
-00001C 6A83           00081         CLRF    PORTD
-00001E 0EC7           00082         MOVLW   0xC7
-000020 6ED5           00083         MOVWF   T0CON
-000022 0EF0           00084         MOVLW   0xF0
-000024 6EF2           00085         MOVWF   INTCON
-000026 0E00           00086         MOVLW   0x00
-000028 6F60           00087         MOVWF   0x060
-00002A 0E80           00088         MOVLW   0X80
-00002C 6ED6           00089         MOVWF   TMR0L
-00002E                00090 INICIO  
-                      00091         
-00002E EF?? F???      00092         goto    $
-                      00093 
-                      00094     END
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE  4
+000012 6ED6           00018     MOVWF       TMR0L
+000014 0011           00019     RETFIE      1
+                      00020 ; TODO ADD INTERRUPTS HERE IF USED
+                      00021 
+                      00022 MAIN_PROG CODE    ; let linker place main program
+                      00023     ORG 0X0018
+000018 0E00           00024         MOVLW   00h                      ; load constant trisD
+00001A 6E95           00025         MOVWF   TRISD
+00001C 6A83           00026         CLRF    PORTD
+00001E 0EC7           00027         MOVLW   0xC7
+000020 6ED5           00028         MOVWF   T0CON
+000022 0EF0           00029         MOVLW   0xF0
+000024 6EF2           00030         MOVWF   INTCON
+000026 0E00           00031         MOVLW   0x00
+000028 6F60           00032         MOVWF   0x060
+00002A 0E80           00033         MOVLW   0X80
+00002C 6ED6           00034         MOVWF   TMR0L
+00002E                00035 INICIO  
+                      00036         
+00002E EF?? F???      00037         goto    $
+                      00038 
+                      00039     END
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE  4
 
 
 SYMBOL TABLE
@@ -200,7 +203,7 @@ ANS7                              00000007
 ANS8                              00000000
 ANS9                              00000001
 ANSEL                             00000F7E
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE  5
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE  5
 
 
 SYMBOL TABLE
@@ -259,7 +262,7 @@ C2SP                              00000003
 CCP1                              00000002
 CCP1CON                           00000FBD
 CCP1IE                            00000002
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE  6
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE  6
 
 
 SYMBOL TABLE
@@ -318,7 +321,7 @@ DC                                00000001
 DC1B0                             00000004
 DC1B1                             00000005
 DC2B0                             00000004
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE  7
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE  7
 
 
 SYMBOL TABLE
@@ -377,7 +380,7 @@ GIEL                              00000006
 GIE_GIEH                          00000007
 GO                                00000001
 GO_DONE                           00000001
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE  8
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE  8
 
 
 SYMBOL TABLE
@@ -436,7 +439,7 @@ IOFS                              00000002
 IPEN                              00000007
 IPR1                              00000F9F
 IPR2                              00000FA2
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE  9
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE  9
 
 
 SYMBOL TABLE
@@ -495,7 +498,7 @@ LVDCON                            00000FD2
 LVDEN                             00000004
 LVDIE                             00000002
 LVDIF                             00000002
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE 10
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE 10
 
 
 SYMBOL TABLE
@@ -554,7 +557,7 @@ P                                 00000004
 P1A                               00000002
 P1B                               00000005
 P1C                               00000006
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE 11
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE 11
 
 
 SYMBOL TABLE
@@ -613,7 +616,7 @@ PSA                               00000003
 PSP0                              00000000
 PSP1                              00000001
 PSP2                              00000002
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE 12
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE 12
 
 
 SYMBOL TABLE
@@ -672,7 +675,7 @@ RCON                              00000FD0
 RCREG                             00000FAE
 RCSTA                             00000FAB
 RD                                00000000
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE 13
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE 13
 
 
 SYMBOL TABLE
@@ -731,7 +734,7 @@ SSPADD                            00000FC8
 SSPBUF                            00000FC9
 SSPCON1                           00000FC6
 SSPCON2                           00000FC5
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE 14
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE 14
 
 
 SYMBOL TABLE
@@ -790,7 +793,7 @@ T2OUTPS0                          00000003
 T2OUTPS1                          00000004
 T2OUTPS2                          00000005
 T2OUTPS3                          00000006
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE 15
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE 15
 
 
 SYMBOL TABLE
@@ -849,7 +852,7 @@ TRISA3                            00000003
 TRISA4                            00000004
 TRISA5                            00000005
 TRISA6                            00000006
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE 16
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE 16
 
 
 SYMBOL TABLE
@@ -908,7 +911,7 @@ VCFG0                             00000004
 VCFG1                             00000005
 VDIRMAG                           00000007
 VPP                               00000003
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE 17
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE 17
 
 
 SYMBOL TABLE
@@ -967,7 +970,7 @@ _CP3_OFF_5L                       000000FF
 _CP3_ON_5L                        000000F7
 _CPB_OFF_5H                       000000FF
 _CPB_ON_5H                        000000BF
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE 18
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE 18
 
 
 SYMBOL TABLE
@@ -1026,7 +1029,7 @@ _PWRT_ON_2L                       000000FE
 _STVREN_OFF_4L                    000000FE
 _STVREN_ON_4L                     000000FF
 _WDTEN_OFF_2H                     000000FE
-MPASM 5.71                          MAIN.ASM   3-24-2017  16:24:17         PAGE 19
+MPASM 5.71                          MAIN.ASM   3-31-2017  18:38:54         PAGE 19
 
 
 SYMBOL TABLE
